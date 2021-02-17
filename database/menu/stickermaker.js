@@ -1,4 +1,4 @@
-const stickermaker = (prefix, ownerName, botName, pushname, reqXp, uangku) => {
+const stickermaker = (botPrefix, ownerName, botName, pushname, reqXp, uangku) => {
         return `
 ╔══✪〘 Informações 〙✪════
 ║
@@ -10,13 +10,13 @@ const stickermaker = (prefix, ownerName, botName, pushname, reqXp, uangku) => {
 ║➩ ❍ Nome: ${pushname}️
 ║➩ ❍ XP: ${reqXp}
 ║➩ ❍ Money: ${uangku}
-───────⊹⊱✫⊰⊹───────
+║───────⊹⊱✫⊰⊹───────
 
 
-                  🤖𝐃𝐫𝐚𝐮𝐝𝐞𝐁𝐎𝐓🤖
+              🤖𝐃𝐫𝐚𝐮𝐝𝐞𝐁𝐎𝐓🤖
 
 
-╔══✪〘 Sobre o Bot 〙✪════
+╔══✪〘 Sobre o Bot 〙✪══
 ║
 ║───────⊹⊱✫⊰⊹──────
 ║➩ ❍ *${prefix}info*
@@ -49,6 +49,6 @@ const stickermaker = (prefix, ownerName, botName, pushname, reqXp, uangku) => {
 ║➩ *Desc* : Adiciona um Texto ao Sticker
 ║───────⊹⊱✫⊰⊹──────
 ║➩ Aumente seu level interagindo no grupo!!
-───────⊹⊱✫⊰⊹───────`
+║───────⊹⊱✫⊰⊹───────`
 }
 exports.stickermaker = stickermaker
