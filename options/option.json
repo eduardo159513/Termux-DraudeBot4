@@ -1,9 +1,9 @@
 {
-    "botName": "BOT_NAME",
-    "ownerName": "OWNER_NAME",
+    "botName": "🤖DraudeBot🤖",
+    "ownerName": "Eduardo🇧🇷",
     "BarBarKey": "YOUR_APIKEY",
-    "ownerNumbers": "628885xxxxxx@s.whatsapp.net",
-    "languages": "pt-br",
+    "ownerNumbers": "5566996149601@s.whatsapp.net",
+    "languages": "br",
     "botPrefix": ".",
     "memberLimitss": "25",
     "userDefaultLimit": "30"
