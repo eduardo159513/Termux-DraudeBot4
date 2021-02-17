@@ -63,6 +63,7 @@ const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const option = JSON.parse(fs.readFileSync('./options/option.json'))
 const { ind } = require('./options/language')
 const { eng } = require('./options/language')
+const { br } = require('./options/language')
 const {
     botName,
     ownerName,
@@ -385,26 +386,25 @@ async function starts() {
                         const q = args.join(' ')
                         
                         mess = {
-                                wait: '⌛ Sedang di Prosess ⌛',
-                                succsess: '✔️ Berhasil ✔️',
-                                levelon: '❬ ✔ ❭ *leveling telah aktif*',
-                                levelnoton: `❬ X ❭  *disable leveling*`,
-                                levelnol: '*LEVEL KAKAK MASIH* 0 °-°',
+                                wait: '⌛ Processando ⌛',
+                                succsess: '✔️ Sucesso ✔️',
+                                levelon: '❬ ✔ ❭ *Leveling Ativado*',
+                                levelnoton: '*SEU LEVEL AINDA É* 0 °-°',
                                 error: {
-                                	    stick: '[❗] Gagal, terjadi kesalahan saat mengkonversi gambar ke sticker ❌',
-                                        Iv: '❌ Link tidak valid ❌',
+                                	    stick: '[❗] Falha, ocorreu um erro ao converter a imagem em um sticker ❌',
+                                        Iv: '❌ Link inválido ❌',
                                 },
                         	only: {
-                        	        group: '[❗] Perintah ini hanya bisa di gunakan dalam group! ❌',
-                                        ownerG: `[❗] Perintah ini hanya bisa di gunakan oleh owner group! ❌`,
-                        	        admin: `[❗] Perintah ini hanya bisa di gunakan oleh admin group! ❌`,
-                                        Badmin: `[❗] Perintah ini hanya bisa di gunakan ketika bot menjadi admin! ❌`,
-                                        daftarB: `──「 BELUM REGISTER 」──\nHalo kak !\nKamu belum Register nih, register dulu yuk... \n\nCommand : ${prefix}register nama|umur\nContoh : ${prefix}register Nazwa|16`,
+                        	        group: '[❗] Este comando só pode ser usado em grupos! ❌',
+                                        ownerG: `[❗] Este comando só pode ser usado pelo dono do grupo! ❌`,
+                        	        admin: `[❗] Este comando só pode ser usado por administradores de grupo! ❌`,
+                                        Badmin: `[❗] Este comando só pode ser usado quando o bot se torna administrador! ❌`,
+                                        daftarB: `──「 NÃO REGISTRADO 」──\n\nVocê ainda não se registrou, se registre primeiro ... \n\nComando : ${prefix}register nome|idade\nExemplo : ${prefix}register Naruto|16`,
                                 }
                         }
-                	const apakah = ['Ya','Tidak']
-        	        const bisakah = ['Bisa','Tidak Bisa']
-		        const kapankah = ['Hari Lagi','Minggu Lagi','Bulan Lagi','Tahun Lagi']
+                	const apakah = ['Sim','Não']
+        	        const bisakah = ['Pode','Não pode']
+		        const kapankah = ['Outro dia', 'Outra semana', 'Outro mês', 'Outro ano']
 			const botNumber = nzwa.user.jid
 			const ownerNumber = [ownerNumbers]
 			const nomorOwner = [ownerNumbers]
