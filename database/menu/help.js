@@ -33,20 +33,20 @@ const help = (botPrefix, ownerName, botName, pushname, reqXp, uangku) => {
 ║➩ ❍ *${botPrefix}downloader*
 ║➩ ❍ *${botPrefix}meme*
 ║➩ ❍ *${botPrefix}group*
-║➩ ❍ *${prefix}sound*
-║➩ ❍ *${prefix}music*
-║➩ ❍ *${prefix}islam*
-║➩ ❍ *${prefix}stalk*
-║➩ ❍ *${prefix}wibu*
-║➩ ❍ *${prefix}18+*
-║➩ ❍ *${prefix}fun*
-║➩ ❍ *${prefix}tod*
-║➩ ❍ *${prefix}information*
-║➩ ❍ *${prefix}stayonscreen*
-║➩ ❍ *${prefix}xp*
-║➩ ❍ *${prefix}limit*
-║➩ ❍ *${prefix}owner*
-║➩ ❍ *${prefix}other*
+║➩ ❍ *${botPrefix}sound*
+║➩ ❍ *${botPrefix}music*
+║➩ ❍ *${botPrefix}islam*
+║➩ ❍ *${botPrefix}stalk*
+║➩ ❍ *${botPrefix}wibu*
+║➩ ❍ *${botPrefix}18+*
+║➩ ❍ *${botPrefix}fun*
+║➩ ❍ *${botPrefix}tod*
+║➩ ❍ *${botPrefix}information*
+║➩ ❍ *${botPrefix}stayonscreen*
+║➩ ❍ *${botPrefix}xp*
+║➩ ❍ *${botPrefix}limit*
+║➩ ❍ *${botPrefix}owner*
+║➩ ❍ *${botPrefix}other*
 ║➩ Aumente seu level interagindo no grupo!!
 ║───────⊹⊱✫⊰⊹───────`
 }
