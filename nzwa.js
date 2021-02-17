@@ -63,7 +63,6 @@ const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const option = JSON.parse(fs.readFileSync('./options/option.json'))
 const { ind } = require('./options/language')
 const { eng } = require('./options/language')
-const { br } = require('./options/language')
 const {
     botName,
     ownerName,
@@ -386,25 +385,26 @@ async function starts() {
                         const q = args.join(' ')
                         
                         mess = {
-                                wait: '⌛ Processando ⌛',
-                                succsess: '✔️ Sucesso ✔️',
-                                levelon: '❬ ✔ ❭ *Leveling Ativado*',
-                                levelnoton: '*SEU LEVEL AINDA É* 0 °-°',
+                                wait: '⌛ Sedang di Prosess ⌛',
+                                succsess: '✔️ Berhasil ✔️',
+                                levelon: '❬ ✔ ❭ *leveling telah aktif*',
+                                levelnoton: `❬ X ❭  *disable leveling*`,
+                                levelnol: '*LEVEL KAKAK MASIH* 0 °-°',
                                 error: {
-                                	    stick: '[❗] Falha, ocorreu um erro ao converter a imagem em um sticker ❌',
-                                        Iv: '❌ Link inválido ❌',
+                                	    stick: '[❗] Gagal, terjadi kesalahan saat mengkonversi gambar ke sticker ❌',
+                                        Iv: '❌ Link tidak valid ❌',
                                 },
                         	only: {
-                        	        group: '[❗] Este comando só pode ser usado em grupos! ❌',
-                                        ownerG: `[❗] Este comando só pode ser usado pelo dono do grupo! ❌`,
-                        	        admin: `[❗] Este comando só pode ser usado por administradores de grupo! ❌`,
-                                        Badmin: `[❗] Este comando só pode ser usado quando o bot se torna administrador! ❌`,
-                                        daftarB: `──「 NÃO REGISTRADO 」──\n\nVocê ainda não se registrou, se registre primeiro ... \n\nComando : ${prefix}register nome|idade\nExemplo : ${prefix}register Naruto|16`,
+                        	        group: '[❗] Perintah ini hanya bisa di gunakan dalam group! ❌',
+                                        ownerG: `[❗] Perintah ini hanya bisa di gunakan oleh owner group! ❌`,
+                        	        admin: `[❗] Perintah ini hanya bisa di gunakan oleh admin group! ❌`,
+                                        Badmin: `[❗] Perintah ini hanya bisa di gunakan ketika bot menjadi admin! ❌`,
+                                        daftarB: `──「 BELUM REGISTER 」──\nHalo kak !\nKamu belum Register nih, register dulu yuk... \n\nCommand : ${prefix}register nama|umur\nContoh : ${prefix}register Nazwa|16`,
                                 }
                         }
-                	const apakah = ['Sim','Não']
-        	        const bisakah = ['Pode','Não pode']
-		        const kapankah = ['Outro dia', 'Outra semana', 'Outro mês', 'Outro ano']
+                	const apakah = ['Ya','Tidak']
+        	        const bisakah = ['Bisa','Tidak Bisa']
+		        const kapankah = ['Hari Lagi','Minggu Lagi','Bulan Lagi','Tahun Lagi']
 			const botNumber = nzwa.user.jid
 			const ownerNumber = [ownerNumbers]
 			const nomorOwner = [ownerNumbers]
@@ -702,7 +702,7 @@ async function starts() {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('ð“ðšð  ð­ðšð«ð ðžð­ ð²ðšð§ð  ð¦ðšð® ðð¢ ð­ð®ð«ð®ð§ð¤ðšð§ ðšðð¦ð¢ð§')
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('ð“ðšð  ð­ðšð«ð ðžð­ ð²ðšð§ð  ð¦ðšð® ðð¢ ð­ð®ð«ð®ð§ð¤ðšð§ ðšðð¦ð¢ð§')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = `Berhasil Demote :\n`
@@ -758,16 +758,16 @@ async function starts() {
 					break
 				  case 'wa.me':
 				  case 'wame':
-  nzwa.updatePresence(from, Presence.composing) 
-      options = {
-          text: `「 *SELF WHATSAPP* 」\n\n_Request by_ : *@${sender.split("@s.whatsapp.net")[0]}\n\nYour link WhatsApp : *wa.me/${sender.split("@s.whatsapp.net")[0]}*\n*Or ( / )*\n*api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
-          contextInfo: { mentionedJid: [sender] }
-    }
-    nzwa.sendMessage(from, options, text, { quoted: mek } )
-				break
-				if (data.error) return reply(data.error)
-				reply(data.result)
-				break
+                                          nzwa.updatePresence(from, Presence.composing)
+                                          try {
+                                                  ppimg = await nzwa.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
+                                          } catch {
+                                                  ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+				          }
+                                          teks = `「 *SELF WHATSAPP* 」\n\n_Request by_ : *@${sender.split("@s.whatsapp.net")[0]}\n\nYour link WhatsApp : *wa.me/${sender.split("@s.whatsapp.net")[0]}*\n*Or ( / )*\n*api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
+                                          console.log('Getting WhatsApp Profile Image...')
+                                          nzwa.sendMessage(from, ppimg, image, { quoted: mek, caption: teks, contextInfo: { "mentionedJid": [sender] } } )
+				          break
 			case 'quotes':
 				nzwa.updatePresence(from, Presence.composing) 
                                 if (!isRegister) return reply(mess.only.daftarB)
@@ -872,7 +872,7 @@ async function starts() {
                 data = await fetchJson(`https://docs-jojo.herokuapp.com/api/infonomor?no=${body.slice(11)}`)
                 if (data.error) return reply(data.error)
                 if (data.result) return reply(data.result)
-                hasil = `â• âž¥ internasional : ${data.international}\nâ• âž¥ nomor : ${data.nomor}\nâ• âž¥ operator : ${data.op}`
+                hasil = `â• âž¥ internasional : ${data.international}\nâ• âž¥ nomor : ${data.nomor}\nâ• âž¥ operator : ${data.op}`
                 reply(hasil)
                 await limitAdd(sender)
                 break
@@ -1174,10 +1174,10 @@ async function starts() {
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
 					teks += `  Total : ${groupMembers.length}\n`
 					for (let mem of groupMembers) {
-						teks += `â• âž¥ @${mem.jid.split('@')[0]}\n`
+						teks += `â• âž¥ @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					mentions('â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - ã€™', members_id, true)
+					mentions('â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - ã€™', members_id, true)
 					break
                 case 'tagall2':
 				nzwa.updatePresence(from, Presence.composing) 
@@ -1187,10 +1187,10 @@ async function starts() {
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
 					teks += `  Total : ${groupMembers.length}\n`
 					for (let mem of groupMembers) {
-						teks += `â• âž¥ ${mem.jid.split('@')[0]}\n`
+						teks += `â• âž¥ ${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					nzwa.sendMessage(from, 'â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - ã€™', text, {quoted: mek})
+					nzwa.sendMessage(from, 'â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - ã€™', text, {quoted: mek})
 					break
                 case 'tagall3':
 				nzwa.updatePresence(from, Presence.composing) 
@@ -1200,10 +1200,10 @@ async function starts() {
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
 					teks += `  Total : ${groupMembers.length}\n`
 					for (let mem of groupMembers) {
-						teks += `â• âž¥ https://wa.me/${mem.jid.split('@')[0]}\n`
+						teks += `â• âž¥ https://wa.me/${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					nzwa.sendMessage(from, 'â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - - ã€™', text, {detectLinks: false, quoted: mek})
+					nzwa.sendMessage(from, 'â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - - ã€™', text, {detectLinks: false, quoted: mek})
 					break
                         case 'tagall4':
 				nzwa.updatePresence(from, Presence.composing) 
@@ -1213,10 +1213,10 @@ async function starts() {
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
 					teks += `  Total : ${groupMembers.length}\n`
 					for (let mem of groupMembers) {
-						teks += `â• âž¥ ${mem.jid.split('@')[0]}@c.us\n`
+						teks += `â• âž¥ ${mem.jid.split('@')[0]}@c.us\n`
 						members_id.push(mem.jid)
 					}
-					nzwa.sendMessage(from, 'â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - - ã€™', text, {quoted: mek})
+					nzwa.sendMessage(from, 'â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - - ã€™', text, {quoted: mek})
 					break
                 case 'tagall5':
 				nzwa.updatePresence(from, Presence.composing) 
@@ -1226,10 +1226,10 @@ async function starts() {
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
 					teks += `  Total : ${groupMembers.length}\n`
 					for (let mem of groupMembers) {
-						teks += `â• âž¥ ${mem.jid.split('@')[0]}@s.whatsapp.net\n`
+						teks += `â• âž¥ ${mem.jid.split('@')[0]}@s.whatsapp.net\n`
 						members_id.push(mem.jid)
 					}
-					reply('â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - - ã€™')
+					reply('â•”â•â•âœªã€˜ Mention All ã€™âœªâ•â•\nâ• âž¥'+teks+'â•šâ•ã€˜ - - - - - ã€™')
 					break
 				case 'send':
 					var pc = body.slice(6)
@@ -1352,15 +1352,16 @@ async function starts() {
 					reply(anu.result)
                                         await limitAdd(sender)
 					break
-			case 'igstalk':
-                      if (!isRegister) return reply(mess.only.daftarB)
-                      if (isLimit(sender)) return reply(ind.limitend(pusname))
-                      hmm = await fetchJson(`https://freerestapi.herokuapp.com/api/v1/igs?u=${body.slice(9)}`)
-                     buffer = await getBuffer(hmm.data.profilehd)
-                     hasil = `Fullname : ${hmm.data.fullname}\npengikut : ${hmm.data.follower}\nMengikuti : ${hmm.data.following}\nPrivate : ${hmm.data.private}\nVerified : ${hmm.data.verified}\nbio : ${hmm.data.bio}`
-                    nzwa.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
-                    await limitAdd(sender)
-                    break
+			        case 'igstalk':
+                                        if (!isRegister) return reply(mess.only.daftarB)
+                                        if (isLimit(sender)) return reply(ind.limitend(pusname))
+                                        vide = body.slice(9)
+                                        hmm = await fetchJson(`https://videfikri.com/api/igstalk/?username=${vide}`)
+                                        buffer = await getBuffer(hmm.result.profile_hd)
+                                        hasil = `Username : ${hmm.result.username}\nFull Name : ${hmm.result.full_name}\nFollowers : ${hmm.result.followers}\nFollowing : ${hmm.result.following}\nPrivate : ${hmm.result.is_private}\nVerified : ${hmm.result.is_verified}\nbio : ${hmm.result.bio}\nPost Count : ${hmm.result.post_count}\nExternal Url : ${hmm.result.external_url}\nFbId : ${hmm.result.fbid}\nShow Suggested Profile : ${hmm.result.show_suggested_profile}`
+                                        nzwa.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
+                                        await limitAdd(sender)
+                                        break
                     case 'ownergrup':
 				  case 'ownergroup':
                nzwa.updatePresence(from, Presence.composing) 
