@@ -1,10 +1,10 @@
-const help = (prefix, ownerName, botName, pushname, reqXp, uangku) => {
+const help = (botPrefix, ownerName, botName, pushname, reqXp, uangku) => {
         return `
 ╔══✪〘 Informações 〙✪════
 ║
-║───────⊹⊱✫⊰⊹──────
+║───────⊹⊱✫⊰⊹─────
 ║➩ ❍ wa.me/5566996149601
-║➩ ❍ Prefix: 「  ${prefix}  」
+║➩ ❍ Prefix: 「  ${botPrefix}  」
 ║➩ ❍ Criador: ${ownerName}
 ║➩ ❍ Bot: ${botName}
 ║➩ ❍ Nome: ${pushname}️
@@ -13,26 +13,26 @@ const help = (prefix, ownerName, botName, pushname, reqXp, uangku) => {
 ───────⊹⊱✫⊰⊹───────
 
 
-                  🤖𝐃𝐫𝐚𝐮𝐝𝐞𝐁𝐎𝐓🤖
+              🤖𝐃𝐫𝐚𝐮𝐝𝐞𝐁𝐎𝐓🤖
 
 
-╔══✪〘 Comandos Do Bot〙✪════
+╔══✪〘 Comandos Do Bot〙✪══
 ║
 ║───────⊹⊱✫⊰⊹──────
-║➩ ❍ *${prefix}info*
-║➩ ❍ *${prefix}blocklist*
-║➩ ❍ *${prefix}chatlist*
-║➩ ❍ *${prefix}ping*
-║➩ ❍ *${prefix}bugreport*
-║➩ ❍ *${prefix}logomaker*
-║➩ ❍ *${prefix}imagemaker*
-║➩ ❍ *${prefix}stickermaker*
-║➩ ❍ *${prefix}search*
-║➩ ❍ *${prefix}education*
-║➩ ❍ *${prefix}kerang*
-║➩ ❍ *${prefix}downloader*
-║➩ ❍ *${prefix}meme*
-║➩ ❍ *${prefix}group*
+║➩ ❍ *${botPrefix}info*
+║➩ ❍ *${botPrefix}blocklist*
+║➩ ❍ *${botPrefix}chatlist*
+║➩ ❍ *${botPrefix}ping*
+║➩ ❍ *${botPrefix}bugreport*
+║➩ ❍ *${botPrefix}logomaker*
+║➩ ❍ *${botPrefix}imagemaker*
+║➩ ❍ *${botPrefix}stickermaker*
+║➩ ❍ *${botPrefix}search*
+║➩ ❍ *${botPrefix}education*
+║➩ ❍ *${botPrefix}kerang*
+║➩ ❍ *${botPrefix}downloader*
+║➩ ❍ *${botPrefix}meme*
+║➩ ❍ *${botPrefix}group*
 ║➩ ❍ *${prefix}sound*
 ║➩ ❍ *${prefix}music*
 ║➩ ❍ *${prefix}islam*
@@ -48,6 +48,6 @@ const help = (prefix, ownerName, botName, pushname, reqXp, uangku) => {
 ║➩ ❍ *${prefix}owner*
 ║➩ ❍ *${prefix}other*
 ║➩ Aumente seu level interagindo no grupo!!
-───────⊹⊱✫⊰⊹───────`
+║───────⊹⊱✫⊰⊹───────`
 }
 exports.help = help
