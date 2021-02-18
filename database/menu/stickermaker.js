@@ -1,4 +1,4 @@
-const stickermaker = (prefix, ownerName, botName, pushname, reqXp, uangku) => {
+const stickermaker = (pushname, prefix, botName, ownerName, reqXp, uangku) => {
         return `
 ╔══✪〘 Informações 〙✪════
 ║
