@@ -1,4 +1,4 @@
-const help = (prefix, ownerName, botName, pushname, reqXp, uangku) => {
+const help = (pushname, prefix, botName, ownerName, reqXp, uangku) => {
         return `
 ╔══✪〘 Informações 〙✪════
 ║
