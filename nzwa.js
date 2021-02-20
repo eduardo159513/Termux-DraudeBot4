@@ -42,6 +42,8 @@ const cd = 4.32e+7
 const crypto = require('crypto')
 const qrcode = require("qrcode-terminal")
 const axios = require('axios')
+const lolcatjs = require('lolcatjs')
+const figlet = require('figlet')
 
 // Load Json File
 const welkom = JSON.parse(fs.readFileSync('./database/json/welkom.json'))
@@ -53,8 +55,12 @@ const event = JSON.parse(fs.readFileSync('./database/json/event.json'))
 const _limit = JSON.parse(fs.readFileSync('./database/json/limit.json'))
 const uang = JSON.parse(fs.readFileSync('./database/json/uang.json'))
 const _registered = JSON.parse(fs.readFileSync('./database/json/registered.json'))
+const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 
+// Load options file
 const option = JSON.parse(fs.readFileSync('./options/option.json'))
+const { eng } = require('./options/language')
+const { br } = require('./options/language')
 const {
     botName,
     ownerName,
@@ -91,13 +97,14 @@ const { limit } = require('./database/menu/limit')
 // Load Vcard Contact
 const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
             + 'VERSION:3.0\n' 
-            + 'FN:Nazwa🖤\n' // full name
+            + 'FN:NazwaðŸ–¤\n' // full name
             + 'ORG:Owner Bot;\n' // the organization of the contact
             + 'TEL;type=CELL;type=VOICE;waid=12542123926:+1 (254) 212-3926\n' // WhatsApp ID + phone number
             + 'END:VCARD'
-prefix = '.'
+prefix = botPrefix
 blocked = []
-limitawal = '20'
+limitawal = userDefaultLimit
+memberlimit = memberLimitss
 cr = '*Verified*'
 
 // Functions
@@ -283,7 +290,7 @@ function kyun(seconds){
   var seconds = Math.floor(seconds % 60);
 
   //return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds)
-  return `${pad(hours)} Jam ${pad(minutes)} Menit ${pad(seconds)} Detik`
+  return `${pad(hours)} Hora ${pad(minutes)} Minuto ${pad(seconds)} Segundo`
 }
 
 async function starts() {
@@ -295,10 +302,10 @@ async function starts() {
 
 	fs.existsSync('./Nazwa.json') && client.loadAuthInfo('./Nazwa.json')
 	client.on('connecting', () => {
-		start('2', 'Connecting...')
+		start('2', 'Conectando...')
 	})
 	client.on('open', () => {
-		success('2', 'Connected')
+		success('2', 'Conectado')
 	})
 	await client.connect({timeoutMs: 30*1000})
         fs.writeFileSync('./Nazwa.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
@@ -368,27 +375,27 @@ async function starts() {
 
 			mess = {
 				wait: '⌛ Processando ⌛',
-				success: '✔️ Berhasil ✔️',
-                                levelon: '❬ ✔ ❭ *enable leveling*',
-				leveloff: ' ❬ X ❭  *disable leveling*',
-				levelnoton: '❬ X ❭ *leveling not aktif*',
-				levelnol: '*LEVEL KAKAK MASIH* 0 °-°',
+				success: '✔️ Sucesso ✔️',
+                                levelon: '❬ ✔ ❭ *leveling ativado*',
+				leveloff: ' ❬ X ❭  *leveling desativado*',
+				levelnoton: '❬ X ❭ *leveling não está ativado*',
+				levelnol: '*SEU LEVEL AINDA É* 0 °-°',
 				error: {
-					stick: '[❗] Gagal, terjadi kesalahan saat mengkonversi gambar ke sticker ❌',
-					Iv: '❌ Link tidak valid ❌'
+					stick: '[❗] Falha, ocorreu um erro ao converter a imagem em um sticker ❌',
+					Iv: '❌ Link inválido ❌'
 				},
 				only: {
-					group: '[❗] Perintah ini hanya bisa di gunakan dalam group! ❌',
-					ownerG: '[❗] Perintah ini hanya bisa di gunakan oleh owner group! ❌',
-					ownerB: '[❗] Perintah ini hanya bisa di gunakan oleh owner bot! ❌',
-					admin: '[❗] Perintah ini hanya bisa di gunakan oleh admin group! ❌',
-					Badmin: '[❗] Perintah ini hanya bisa di gunakan ketika bot menjadi admin! ❌',
-                                        daftarB: `──「 AINDA NÃO REGISTRADO 」──\nBem vindo ao ParaBot, envie ".help" para obter ajuda!\nVeja mais informações sobre esse bot no vídeo: https://youtu.be/Hiv4U4CR9kg\nCréditos ao criador original: https://github.com/NazwaS/termux-whatsapp-bot\n\nVocê ainda não se cadastrou, cadastre-se primeiro... \n\nComando: ${prefix}register Nome|idade\nExemplo: ${prefix}register Naruto|16`,
+					group: '[❗] Este comando só pode ser usado em grupos! ❌',
+					ownerG: '[❗] Este comando só pode ser usado pelo dono do grupo! ❌',
+					ownerB: '[❗] Este comando só pode ser usado pelo dono do bot! ❌',
+					admin: '[❗] Este comando só pode ser usado por administradores do grupo! ❌',
+					Badmin: '[❗] Este comando só pode ser usado quando o bot é admin! ❌',
+                                        daftarB: `──「 AINDA NÃO REGISTRADO 」──\nBem vindo ao ðŸ¤–DraudeBotðŸ¤–, envie ".help" para obter ajuda!\n\n\nVocê ainda não se cadastrou, cadastre-se primeiro... \n\nComando: ${prefix}register Nome|idade\nExemplo: ${prefix}register Naruto|16`,
 				}
 			}
-    			const apakah = ['Ya','Tidak']
-        		const bisakah = ['Bisa','Tidak Bisa']
-		        const kapankah = ['Hari Lagi','Minggu Lagi','Bulan Lagi','Tahun Lagi']
+    			const apakah = ['Sim','Não']
+        		const bisakah = ['Posso','Não posso']
+		        const kapankah = ['Outro dia', 'Outra semana', 'Outro mês', 'Outro ano']
 			const botNumber = client.user.jid
 			const ownerNumber = [ownerNumbers]
 			const nomorOwner = [ownerNumbers]
@@ -446,7 +453,7 @@ async function starts() {
                 addLevelingXp(sender, amountXp)
                 if (requiredXp <= getLevelingXp(sender)) {
                     addLevelingLevel(sender, 1)
-                    await reply(`*「 LEVEL UP 」*\n\n➸ *Name*: ${sender}\n➸ *XP*: ${getLevelingXp(sender)}\n➸ *Level*: ${getLevel} -> ${getLevelingLevel(sender)}\n\nCongrats!! 🎉🎉`)
+                    await reply(`*「 LEVEL UP 」*\n\n➸ *Name*: ${sender}\n➸ *XP*: ${getLevelingXp(sender)}\n➸ *Level*: ${getLevel} -> ${getLevelingLevel(sender)}\n\nParabéns !! 🎉🎉`)
                 }
             } catch (err) {
                 console.error(err)
@@ -458,7 +465,7 @@ async function starts() {
                     for (let lmt of _limit) {
                         if (lmt.id === sender) {
                             limitCounts = limitawal - lmt.limit
-                            if (limitCounts <= 0) return client.sendMessage(from,`Limit request anda sudah habis\n\n_Note : Limit akan direset setiap jam 21:00!_`, text,{ quoted: mek})
+                            if (limitCounts <= 0) return client.sendMessage(from,`Seu limite de comandos acaboun\n_Nota : O seu limite será zerado a cada 24:00!_`, text,{ quoted: mek})
                             client.sendMessage(from, ind.limitcount(limitCounts), text, { quoted : mek})
                             found = true
                         }
@@ -529,104 +536,104 @@ async function starts() {
                                         break
                                 case '18+menu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(adult(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(adult(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'downloadermenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(downloader(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(downloader(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'educationmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await cost(education(prefix, botName, ownerName), text, tescuk, cr)
+                                        await cost(education(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'funmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(fun(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(fun(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'groupmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(group(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(group(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'imagemakermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(imagemaker(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(imagemaker(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'informationmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(information(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(information(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'islammenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(islam(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(islam(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'kerangmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(kerang(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(kerang(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'logomakermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(logomaker(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(logomaker(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'mememenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(meme(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(meme(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'musicmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(music(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(music(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'othermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(other(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(other(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'ownermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(owner(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(owner(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'searchmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(search(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(search(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'soundmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(sound(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(sound(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'stalkmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(stalk(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(stalk(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'stayonscreenmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(stayonscreen(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(stayonscreen(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'stickermakermenu':
                                 case 'stikermakermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(stickermaker(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(stickermaker(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'todmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(tod(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(tod(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'wibumenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(wibu(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(wibu(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'xpmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(xp(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(xp(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break
                                 case 'limitmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(limit(prefix, botName, ownerName), text, tescuk, cr)
+                                        await costum(limit(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
                                         break 
                   case 'timer':
-				if (args[1]=="detik") {var timer = args[0]+"000"
-				} else if (args[1]=="menit") {var timer = args[0]+"0000"
-				} else if (args[1]=="jam") {var timer = args[0]+"00000"
-				} else {return reply("*pilih:*\ndetik\nmenit\njam")}
+				if (args[1]=="segundos") {var timer = args[0]+"000"
+				} else if (args[1]=="minutos") {var timer = args[0]+"0000"
+				} else if (args[1]=="horas") {var timer = args[0]+"00000"
+				} else {return reply("*selecione:*\nsegundos\nminutos\nhoras")}
 				setTimeout( () => {
-				reply("Waktu habis")
+				reply("O tempo acabou")
 				}, timer)
 				break
                 case 'bahasa':
@@ -642,18 +649,18 @@ async function starts() {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('𝐓𝐚𝐠 𝐭𝐚𝐫𝐠𝐞𝐭 𝐲𝐚𝐧𝐠 𝐦𝐚𝐮 𝐝𝐢 𝐭𝐮𝐫𝐮𝐧𝐤𝐚𝐧 𝐚𝐝𝐦𝐢𝐧')
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('𝐀 𝐭𝐚𝐠 𝐝𝐞𝐬𝐞𝐣𝐚𝐝𝐚 𝐪𝐮𝐞 𝐨 𝐚𝐝𝐦𝐢𝐧𝐢𝐬𝐭𝐫𝐚𝐝𝐨𝐫 𝐝𝐞𝐬𝐞𝐣𝐚 𝐝𝐞𝐬𝐦𝐮𝐭𝐚𝐫')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = ''
 						for (let _ of mentioned) {
-							teks += `𝐏𝐞𝐫𝐢𝐧𝐭𝐚𝐡 𝐝𝐢𝐭𝐞𝐫𝐢𝐦𝐚, 𝐦𝐞𝐧𝐮𝐫𝐮𝐧𝐤𝐚𝐧 𝐣𝐚𝐝𝐢 𝐚𝐝𝐦𝐢𝐧 𝐠𝐫𝐨𝐮𝐩 :\n`
+							teks += `𝐏𝐞𝐝𝐢𝐝𝐨 𝐚𝐜𝐞𝐢𝐭𝐨, 𝐝𝐞𝐬𝐦𝐮𝐭𝐚𝐝𝐨 𝐩𝐞𝐥𝐨 𝐚𝐝𝐦𝐢𝐧𝐢𝐬𝐭𝐫𝐚𝐝𝐨𝐫 𝐝𝐨 𝐠𝐫𝐮𝐩𝐨 :\n`
 							teks += `@_.split('@')[0]`
 						}
 						mentions(teks, mentioned, true)
 						client.groupDemoteAdmin(from, mentioned)
 					} else {
-						mentions(`𝐏𝐞𝐫𝐢𝐧𝐭𝐚𝐡 𝐝𝐢𝐭𝐞𝐫𝐢𝐦𝐚, 𝐦𝐞𝐧𝐮𝐫𝐮𝐧𝐤𝐚𝐧 @${mentioned[0].split('@')[0]}\n 𝐣𝐚𝐝𝐢 𝐚𝐝𝐦𝐢𝐧 𝐠𝐫𝐨𝐮𝐩 _*${groupMetadata.subject}*_`, mentioned, true)
+						mentions(`𝐏𝐞𝐝𝐢𝐝𝐨 𝐚𝐜𝐞𝐢𝐭𝐨, @${mentioned[0].split('@')[0]}\n 𝐝𝐞𝐬𝐦𝐮𝐭𝐚𝐝𝐨 𝐩𝐞𝐥𝐨 𝐚𝐝𝐦𝐢𝐧𝐢𝐬𝐭𝐫𝐚𝐝𝐨𝐫 𝐝𝐨 𝐠𝐫𝐮𝐩𝐨 _*${groupMetadata.subject}*_`, mentioned, true)
 						client.groupDemoteAdmin(from, mentioned)
 					}
 					break
@@ -677,23 +684,23 @@ async function starts() {
                                         client.sendMessage(from, buffer, image, {quoted: mek})
                                         await limitAdd(sender)
                                         break
-                  case 'promote':
+                                case 'promote':
 					client.updatePresence(from, Presence.composing) 
                                         if (!isRegister) return reply(mess.only.daftarB)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target yang ingin di promote!')
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('A tag que você deseja promover!')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
-						teks = 'Perintah di terima, menambah jabatan sebagai admin :\n'
+						teks = 'Pedido recebido, promovendo a administrador :\n'
 						for (let _ of mentioned) {
 							teks += `@${_.split('@')[0]}\n`
 						}
 						mentions(teks, mentioned, true)
 						client.groupMakeAdmin(from, mentioned)
 					} else {
-						mentions(`Perintah di terima, menambah jabatan sebagai admin : @${mentioned[0].split('@')[0]}`, mentioned, true)
+						mentions(`Pedido recebido, promovendo a administrador : @${mentioned[0].split('@')[0]}`, mentioned, true)
 						client.groupMakeAdmin(from, mentioned)
 					}
 					break
@@ -701,7 +708,7 @@ async function starts() {
 				  case 'wame':
   client.updatePresence(from, Presence.composing) 
       options = {
-          text: `「 *SELF WHATSAPP* 」\n\n_Request by_ : *@${sender.split("@s.whatsapp.net")[0]}\n\nYour link WhatsApp : *wa.me/${sender.split("@s.whatsapp.net")[0]}*\n*Or ( / )*\n*api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
+          text: `「 *SEU WHATSAPP* 」\n\n_Solicitado por_ : *@${sender.split("@s.whatsapp.net")[0]}\n\nSeu link WhatsApp : *wa.me/${sender.split("@s.whatsapp.net")[0]}*\n*Ou ( / )*\n*api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
           contextInfo: { mentionedJid: [sender] }
     }
     client.sendMessage(from, options, text, { quoted: mek } )
@@ -714,7 +721,7 @@ async function starts() {
                                 if (!isRegister) return reply(mess.only.daftarB)
                                 if (isLimit(sender)) return reply(ind.limitend(pusname))
 				data = await fetchJson(`http://mhankbarbars.herokuapp.com/api/randomquotes`)
-				ez = `*➸ Author :* ${data.author}\n*➸ Quotes :* ${data.quotes}`
+				ez = `*➸ Autor :* ${data.author}\n*➸ Citações :* ${data.quotes}`
 				reply(ez)
                                 await limitAdd(sender)
 				break
@@ -735,8 +742,8 @@ async function starts() {
                 break
               case 'owner':
                 case 'creator':
-                  client.sendMessage(from, {displayname: "Jeff", vcard: vcard}, MessageType.contact, { quoted: mek})
-               client.sendMessage(from, 'Nih nomor ownerku kak, save ya kak nanti di save balik',MessageType.text, { quoted: mek} )
+                  client.sendMessage(from, {displayname: "Eduardo", vcardvcard: vcard}, MessageType.contact, { quoted: mek})
+               client.sendMessage(from, 'Aqui está o número do proprietário',MessageType.text, { quoted: mek} )
                 break
 	case 'hidetag':
                 client.updatePresence(from, Presence.composing) 
@@ -763,20 +770,20 @@ async function starts() {
                                                 if (isLimit(sender)) return reply(ind.limitend(pusname))
 						let { user, stats } = await tiktod.getUserProfileInfo(args[0])
 						reply(mess.wait)
-						teks = `*ID* : ${user.id}\n*Username* : ${user.uniqueId}\n*Nickname* : ${user.nickname}\n*Followers* : ${stats.followerCount}\n*Followings* : ${stats.followingCount}\n*Posts* : ${stats.videoCount}\n*Luv* : ${stats.heart}\n`
+						teks = `*ID* : ${user.id}\n*Nome de usuário* : ${user.uniqueId}\n*Nickname* : ${user.nickname}\nSeguidores* : ${stats.followerCount}\n*Seguindo* : ${stats.followingCount}\n*Posts* : ${stats.videoCount}\n*Luv* : ${stats.heart}\n`
 						buffer = await getBuffer(user.avatarLarger)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: teks})
                                                 await limitAdd(sender)
 					} catch (e) {
 						console.log(`Error :`, color(e,'red'))
-						reply('username tidak valid')
+						reply('Nome de usuário Inválido')
 					}
 					break
 				case 'snowwrite':
 					var gh = body.slice(11)
 					var gbl7 = gh.split("|")[0];
 					var gbl8 = gh.split("|")[1];
-					if (args.length < 1) return reply(`Kirim perintah ${prefix}snowwrite teks1|teks2, contoh ${prefix}snowwrite aqulzz|galuh`)
+					if (args.length < 1) return reply(`Enviar pedidos ${prefix}snowwrite texto1|texto2, exemplo ${prefix}snowwrite batata|doce`)
                                         if (!isRegister) return reply(mess.only.daftarB)
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
 					reply(mess.wait)
@@ -787,7 +794,7 @@ async function starts() {
 					break
 				case 'marvellogo':
 					var gh = body.slice(12)
-					if (args.length < 1) return reply(`Kirim perintah ${prefix}marvellogo teks, contoh ${prefix}marvellogo Nazwa Canss`)
+					if (args.length < 1) return reply(`Enviar pedidos ${prefix}marvellogo texto, exemplo ${prefix}marvellogo Super Batata`)
                                         if (!isRegister) return reply(mess.only.daftarB)
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
 					reply(mess.wait)
@@ -809,11 +816,11 @@ async function starts() {
                client.updatePresence(from, Presence.composing) 
                  if (!isRegister) return reply(mess.only.daftarB)
                  if (isLimit(sender)) return reply(ind.limitend(pusname))
-                 if (args.length < 1) return reply(`Masukan Nomor\nContoh : ${prefix}infonomor 0812345678`)
+                 if (args.length < 1) return reply(`Insira o número\nExemplo : ${prefix}infonomor 0812345678`)
                 data = await fetchJson(`https://docs-jojo.herokuapp.com/api/infonomor?no=${body.slice(11)}`)
                 if (data.error) return reply(data.error)
                 if (data.result) return reply(data.result)
-                hasil = `╠➥ internasional : ${data.international}\n╠➥ nomor : ${data.nomor}\n╠➥ operator : ${data.op}`
+                hasil = `╠➥ internacional : ${data.international}\n╠➥ número : ${data.nomor}\n╠➥ operadora : ${data.op}`
                 reply(hasil)
                 await limitAdd(sender)
                 break
@@ -822,7 +829,7 @@ async function starts() {
                    if (!isRegister) return reply(mess.only.daftarB)
                    if (isLimit(sender)) return reply(ind.limitend(pusname))
                    hasil = await getBuffer(data.gambar)
-                   client.sendMessage(from, hasil, image, {quoted: mek, caption: `Hasil Dari *${body.slice(5)}*`})
+                   client.sendMessage(from, hasil, image, {quoted: mek, caption: `Resultados de *${body.slice(5)}*`})
                    await limitAdd(sender)
                    break
                    case 'covidcountry':
@@ -831,12 +838,12 @@ async function starts() {
                    if (isLimit(sender)) return reply(ind.limitend(pusname))
                    data = await fetchJson(`https://arugaz.my.id/api/edu/corona?country=${body.slice(7)}`)
                    if (data.result) reply(data.result)
-                   hasil = `Negara : ${data.result.country}\n\nActive : ${data.result.active}\ncasesPerOneMillion : ${data.result.casesPerOneMillion}\ncritical : ${data.result.critical}\ndeathsPerOneMillion : ${data.result.deathsPerOneMillion}\nrecovered : ${data.result.recovered}\ntestPerOneMillion : ${data.result.testPerOneMillion}\ntodayCases : ${data.result.todayCases}\ntodayDeath : ${data.result.todayDeath}\ntotalCases : ${data.result.totalCases}\ntotalTest : ${data.result.totalTest}`
+                   hasil = `País : ${data.result.country}\n\nAtivo : ${data.result.active}\nccasosPorUmMilhão : ${data.result.casesPerOneMillion}\ncritical : ${data.result.critical}\nMortesPorUmMilhão : ${data.result.deathsPerOneMillion}\nrecuperados : ${data.result.recovered}\ntestesPorUmMilhão : ${data.result.testPerOneMillion}\nCasosDeHoje : ${data.result.todayCases}\nMortesDeHoje : ${data.result.todayDeath}\ncasosTotais : ${data.result.totalCases}\ntestesTotais : ${data.result.totalTest}`
                    reply(hasil)
                    await limitAdd(sender)
                    break
 				case 'wiki':
-					if (args.length < 1) return reply('masukan kata kunci')
+					if (args.length < 1) return reply('digite a palavra-chave')
 					tels = body.slice(6)	
                                         if (!isRegister) return reply(mess.only.daftarB)				
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -845,7 +852,7 @@ async function starts() {
                                         await limitAdd(sender)
 					break	
 				case 'wikien':
-					if (args.length < 1) return reply('masukan kata kunci')
+					if (args.length < 1) return reply('digite a palavra-chave')
 					tels = body.slice(8)		
 			                if (!isRegister) return reply(mess.only.daftarB)
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -854,13 +861,13 @@ async function starts() {
                                         await limitAdd(sender)
 					break				
 				case 'ytmp3':
-					if (args.length < 1) return reply('Urlnya mana um?')
+					if (args.length < 1) return reply('Onde está o url, hum?')
                                         if (!isRegister) return reply(mess.only.daftarB)
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
 					anu = await fetchJson(`https://mhankbarbar.tech/api/yta?url=${args[0]}&apiKey=${BarBarKey}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
-					teks = `❏ *Title* : ${anu.title}\n❏ *Filesize* : ${anu.filesize}\n\nTunggu Bentar Ya Kak, Audionya Lagi Di Kirim...`
+					teks = `❏ *Título* : ${anu.title}\n❏ *Tamanho do arquivo* : ${anu.filesize}\n\nEspera aí, o áudio está sendo enviado ...`
 					thumb = await getBuffer(anu.thumb)
 					client.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
 					buffer = await getBuffer(anu.result)
@@ -868,13 +875,13 @@ async function starts() {
                                         await limitAdd(sender)
 					break
 				case 'ytmp4':
-					if (args.length < 1) return reply('Urlnya mana um?')
+					if (args.length < 1) return reply('Onde está o url, hum?')
                                         if (!isRegister) return reply(mess.only.daftarB)
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
 					anu = await fetchJson(`https://mhankbarbar.tech/api/ytv?url=${args[0]}&apiKey=${BarBarKey}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
-					teks = `❏ *Title* : ${anu.title} \n❏ *Size* : ${anu.filesize} \n❏ *Desc* : ${anu.desc} \n\n*VIDEO SEDANG DIKIRIMKAN, JANGAN SPAM YA SAYANG...*`
+					teks = `❏ *Título* : ${anu.title} \n❏ *Tamanho* : ${anu.filesize} \n❏ *Desc* : ${anu.desc} \n\n*O VÍDEO ESTÁ ENVIANDO, AGUARDE ...*`
 					thumb = await getBuffer(anu.thumb)
 					client.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
 					buffer = await getBuffer(anu.result)
@@ -888,24 +895,24 @@ async function starts() {
 					data = await fetchJson(`https://docs-jojo.herokuapp.com/api/trendingtwitter`, {method: 'get'})
 					teks = '=================\n'
 					for (let i of data.result) {
-						teks += `*Hastag* : ${i.hastag}\n*link* : ${i.link}\n*rank* : ${i.rank}\n*Tweet* : ${i.tweet}\n=================\n`
+						teks += `*Hashtag* : ${i.hastag}\n*link* : ${i.link}\n*classificação* : ${i.rank}\n*Tweet* : ${i.tweet}\n=================\n`
 					}
 					reply(teks.trim())
                                         await limitAdd(sender)
 					break
 				case 'testime':
 					setTimeout( () => {
-					client.sendMessage(from, 'Waktu habis:v', text) // ur cods
+					client.sendMessage(from, 'Tempo limite', text) // ur cods
 					}, 10000) // 1000 = 1s,
 					setTimeout( () => {
-					client.sendMessage(from, '5 Detik lagi', text) // ur cods
+					client.sendMessage(from, 'Mais 5 segundos', text) // ur cods
 					}, 5000) // 1000 = 1s,
 					setTimeout( () => {
-					client.sendMessage(from, '10 Detik lagi', text) // ur cods
+					client.sendMessage(from, 'Mais 10 segundos', text) // ur cods
 					}, 0) // 1000 = 1s,
 					break
 				/*case 'semoji':
-					if (args.length < 1) return reply('emojinya mana um?')
+					if (args.length < 1) return reply('cadê o emojis hum?')
                                         if (!isRegister) return reply(mess.only.daftarB)
 					ranp = getRandom('.png')
 					rano = getRandom('.webp')
@@ -922,7 +929,7 @@ async function starts() {
 					break*/
 				case 'nulis':
 				case 'tulis':
-					if (args.length < 1) return reply('Yang mau di tulis apaan?')
+					if (args.length < 1) return reply('O que você quer escrever?')
                                         if (!isRegister) return reply(mess.only.daftarB)
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
 					teks = body.slice(7)
@@ -935,7 +942,7 @@ async function starts() {
 					break
 	case 'kbbi':
             client.updatePresence(from, Presence.composing) 
-                if (args.length < 1) return reply(`Masukan Pertanyaan\nContoh : ${prefix}kbbi asu`)
+                if (args.length < 1) return reply(`Digite a pergunta\nExemplo : ${prefix}kbbi batata`)
                 if (!isRegister) return reply(mess.only.daftarB)
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
 	      tels = body.slice(6)
@@ -951,7 +958,7 @@ async function starts() {
                if (!isRegister) return reply(mess.only.daftarB)
                if (isLimit(sender)) return reply(ind.limitend(pusname))
                if (data.error) return reply(data.error)
-                 infomp3 = `*Lagu Ditemukan!!!*\nJudul : ${data.result.judul}\nAlbum : ${data.result.album}\nDipublikasi : ${data.result.dipublikasi}`
+                 infomp3 = `*Música encontrada !!!*\nTítulo : ${data.result.judul}\nÁlbum : ${data.result.album}\nPublicados : ${data.result.dipublikasi}`
                 buffer = await getBuffer(data.result.thumb)
                 lagu = await getBuffer(data.result.mp3)
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
@@ -959,7 +966,7 @@ async function starts() {
                 await limitAdd(sender)
                 break
 				case 'blocklist':
-					teks = 'This is list of blocked number :\n'
+					teks = 'Esta é a lista de números bloqueados :\n'
 					for (let block of blocked) {
 						teks += `~> @${block.split('@')[0]}\n`
 					}
@@ -968,7 +975,7 @@ async function starts() {
 					break
                    case 'chatlist':
 					client.updatePresence(from, Presence.composing)  
-					teks = 'This is list of chat number :\n'
+					teks = 'Esta é a lista de números do chat :\n'
 					for (let all of totalchat) {
 						teks += `~> @${all}\n`
 					}
@@ -996,14 +1003,14 @@ async function starts() {
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
 					teks = '################\n'
 					for (let i of data.result) {
-						teks += `*Title* : ${i.judul}\n*link* : ${i.link}\n*rilis* : ${i.rilis}\n###############\n`
+						teks += `*Título* : ${i.judul}\n*link* : ${i.link}\n*lançamentos* : ${i.rilis}\n###############\n`
 					}
 					reply(teks.trim())
                                         await limitAdd(sender)
 					break  
 					case 'bpink':
               
-                  if (args.length < 1) return reply(`Masukan Teks\nContoh : ${prefix}Caliph Bot`)
+                  if (args.length < 1) return reply(`Digite o texto\nExemplo : ${prefix}Caliph Bot`)
                 data = await getBuffer(`https://docs-jojo.herokuapp.com/api/blackpink?text=${body.slice(7)}`)
                 if (!iRegister) return reply(mess.only.daftarB)
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1012,21 +1019,21 @@ async function starts() {
                 break
 				case 'tts':
 				   client.updatePresence(from, Presence.recording) 
-				   if (args.length < 1) return client.sendMessage(from, 'Kode bahasanya mana om?', text, {quoted: mek})
+				   if (args.length < 1) return client.sendMessage(from, 'Qual é o código da linguagem, tio', text, {quoted: mek})
                                    if (!isRegister) return reply(mess.only.daftarB)
                                    if (isLimit(sender)) return reply(ind.limitend(pusname))
 					const gtts = require('./lib/gtts')(args[0])
-					if (args.length < 2) return client.sendMessage(from, 'Textnya mana om', text, {quoted: mek})
+					if (args.length < 2) return client.sendMessage(from, 'Cadê o texto tio', text, {quoted: mek})
 					dtt = body.slice(8)
 					ranm = getRandom('.mp3')
 					rano = getRandom('.ogg')
 					dtt.length > 600
-					? reply('Textnya kebanyakan om')
+					? reply('Muito texto, tio')
 					: gtts.save(ranm, dtt, function() {
 						exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
 							fs.unlinkSync(ranm)
 							buff = fs.readFileSync(rano)
-							if (err) return reply('Gagal om:(')
+							if (err) return reply('Falhou, tio:(')
 							client.sendMessage(from, buff, audio, {quoted: mek, ptt:true})
 							fs.unlinkSync(rano)
 						})
@@ -1038,7 +1045,7 @@ async function starts() {
 					client.updatePresence(from, Presence.composing) 
                                         if (!isRegister) return reply(mess.only.daftarB)
 					if (!isGroup) return reply(mess.only.group)
-					teks = `List admin of group *${groupMetadata.subject}*\nTotal : ${groupAdmins.length}\n\n`
+					teks = `lista de administradores do grupo *${groupMetadata.subject}*\nTotal : ${groupAdmins.length}\n\n`
 					no = 0
 					for (let admon of groupAdmins) {
 						no += 1
@@ -1058,7 +1065,7 @@ async function starts() {
 					client.sendMessage(from, pok, image, { quoted: mek })
                                         await limitAdd(sender)
 					break
-                case 'pinterest':
+                                case 'pinterest':
                                         tels = body.slice(11)
 					client.updatePresence(from, Presence.composing) 
 					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${tels}`, {method: 'get'})
@@ -1068,7 +1075,7 @@ async function starts() {
 					n = JSON.parse(JSON.stringify(data));
 					nimek =  n[Math.floor(Math.random() * n.length)];
 					pok = await getBuffer(nimek)
-					client.sendMessage(from, pok, image, { quoted: mek, caption: `*PINTEREST*\n\*Hasil Pencarian* : *${tels}*`})
+					client.sendMessage(from, pok, image, { quoted: mek, caption: `*PINTEREST*\n\*Resultado da pesquisa* : *${tels}*`})
                                         await limitAdd(sender)
 					break
 				case 'setprefix':
@@ -1076,7 +1083,7 @@ async function starts() {
 					if (args.length < 1) return
 					if (!isOwner) return reply(mess.only.ownerB)
 					prefix = args[0]
-					reply(`Prefix berhasil di ubah menjadi : ${prefix}`)
+					reply(`O prefixo foi alterado com sucesso para : ${prefix}`)
 					break
 				case 'meme':
                                         if (!isRegister) return reply(mess.only.daftarB)
@@ -1099,7 +1106,7 @@ async function starts() {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isOwner) return reply(mess.only.ownerB)
 					client.blockUser (`${body.slice(8)}@c.us`, "add")
-					client.sendMessage(from, `perintah Diterima, memblokir ${body.slice(8)}@c.us`, text)
+					client.sendMessage(from, `Pedido recebido, bloquear ${body.slice(8)}@c.us`, text)
 					break
 				case 'hilih':
 					client.updatePresence(from, Presence.composing) 
@@ -1118,7 +1125,7 @@ async function starts() {
 						teks += `╠➥ @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					mentions('╔══✪〘 Mention All 〙✪══\n╠➥'+teks+'╚═〘 - - - - 〙', members_id, true)
+					mentions('╔══✪〘 Mencionando Todos 〙✪══\n╠➥'+teks+'╚═〘 - - - - 〙', members_id, true)
 					break
                 case 'tagall2':
 				client.updatePresence(from, Presence.composing) 
@@ -1131,7 +1138,7 @@ async function starts() {
 						teks += `╠➥ ${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					client.sendMessage(from, '╔══✪〘 Mention All 〙✪══\n╠➥'+teks+'╚═〘 - - - - 〙', text, {quoted: mek})
+					client.sendMessage(from, '╔══✪〘 Mencionando Todos 〙✪══\n╠➥'+teks+'╚═〘 - - - - 〙', text, {quoted: mek})
 					break
                 case 'tagall3':
 				client.updatePresence(from, Presence.composing) 
@@ -1144,7 +1151,7 @@ async function starts() {
 						teks += `╠➥ https://wa.me/${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					client.sendMessage(from, '╔══✪〘 Mention All 〙✪══\n╠➥'+teks+'╚═〘 - - - - - 〙', text, {detectLinks: false, quoted: mek})
+					client.sendMessage(from, '╔══✪〘 Mencionando Todos 〙✪══\n╠➥'+teks+'╚═〘 - - - - - 〙', text, {detectLinks: false, quoted: mek})
 					break
                         case 'tagall4':
 				client.updatePresence(from, Presence.composing) 
@@ -1157,7 +1164,7 @@ async function starts() {
 						teks += `╠➥ ${mem.jid.split('@')[0]}@c.us\n`
 						members_id.push(mem.jid)
 					}
-					client.sendMessage(from, '╔══✪〘 Mention All 〙✪══\n╠➥'+teks+'╚═〘 - - - - - 〙', text, {quoted: mek})
+					client.sendMessage(from, '╔══✪〘 Mencionando Todos 〙✪══\n╠➥'+teks+'╚═〘 - - - - - 〙', text, {quoted: mek})
 					break
                 case 'tagall5':
 				client.updatePresence(from, Presence.composing) 
@@ -1170,7 +1177,7 @@ async function starts() {
 						teks += `╠➥ ${mem.jid.split('@')[0]}@s.whatsapp.net\n`
 						members_id.push(mem.jid)
 					}
-					reply('╔══✪〘 Mention All 〙✪══\n╠➥'+teks+'╚═〘 - - - - - 〙')
+					reply('╔══✪〘 Mencionando Todos 〙✪══\n╠➥'+teks+'╚═〘 - - - - - 〙')
 					break
 				case 'send':
 					var pc = body.slice(6)
@@ -1182,18 +1189,18 @@ async function starts() {
                                         if (!isRegister) return reply(mess.only.daftarB)
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
 					nimek = await fetchJson('https://arugaz.my.id/api/anime/animequotes')
-					hasil = `*Anime* : ${nimek.data.anime}\n*Character* : ${nimek.data.character}\n*Quotes* : ${nimek.data.quote}`
+					hasil = `*Anime* : ${nimek.data.anime}\n*Personagem* : ${nimek.data.character}\n*Citações* : ${nimek.data.quote}`
 					reply(hasil)
                                         await limitAdd(sender)
 					break
 				case 'setppbot':
 				client.updatePresence(from, Presence.composing) 
-				if (!isQuotedImage) return reply(`Kirim gambar dengan caption ${prefix}setbotpp atau tag gambar yang sudah dikirim`)
+				if (!isQuotedImage) return reply(`Envie fotos com legendas ${prefix}setbotpp ou tags de imagem que já foram enviadas`)
 					if (!isOwner) return reply(mess.only.ownerB)
 					enmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					media = await client.downloadAndSaveMediaMessage(enmedia)
 					await client.updateProfilePicture(botNumber, media)
-					reply('Makasih profile barunya😗')
+					reply('Obrigado pelo novo perfilðŸ˜—')
 					break
 				case 'bc':
 					client.updatePresence(from, Presence.composing) 
@@ -1355,10 +1362,10 @@ async function starts() {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target yang ingin di tendang!')
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('A pessoa que você deseja expulsar!')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
-						teks = 'Perintah di terima, mengeluarkan :\n'
+						teks = 'Pedido recebido, expulsando... :\n'
 						for (let _ of mentioned) {
 							teks += `@${_.split('@')[0]}\n`
 						}
@@ -1367,7 +1374,7 @@ async function starts() {
 					} else {
 						mentions(`Perintah di terima, mengeluarkan : @${mentioned[0].split('@')[0]}`, mentioned, true)
 						client.groupRemove(from, mentioned)
-					client.sendMessage(mentioned, 'yahaha Lu kekick😂', text)
+					client.sendMessage(mentioned, 'hahaha foi expulso(a)😂', text)
 					}
 					break
 				case 'exe':
@@ -1389,7 +1396,7 @@ async function starts() {
                                      if (!isRegister) return reply(mess.only.daftarB)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					linkgc = await client.groupInviteCode (from)
-					yeh = `https://chat.whatsapp.com/${linkgc}\n\nLink Group *${groupName}*`
+					yeh = `https://chat.whatsapp.com/${linkgc}\n\nLink do Grupo *${groupName}*`
 					client.sendMessage(from, yeh, text, {quoted: mek, detectLinks: false})
 					break
                 case 'qrcode':
