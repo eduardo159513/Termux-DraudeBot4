@@ -59,8 +59,8 @@ const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 
 // Load options file
 const option = JSON.parse(fs.readFileSync('./options/option.json'))
-const { eng } = require('./options/language')
 const { ind } = require('./options/language')
+const { eng } = require('./options/language')
 const { br } = require('./options/language')
 const {
     botName,
