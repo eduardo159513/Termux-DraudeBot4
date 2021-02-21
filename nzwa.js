@@ -531,100 +531,100 @@ async function starts() {
                                         if (!isRegister) return reply(mess.only.daftarB)
                                         const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 			                const uangku = checkATMuser(sender)
-                                        await costum(help(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(help(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case '18+menu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(adult(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(adult(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'downloadermenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(downloader(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(downloader(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'educationmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await cost(education(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await cost(education(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'funmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(fun(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(fun(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'groupmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(group(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(group(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'imagemakermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(imagemaker(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(imagemaker(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'informationmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(information(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(information(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'islammenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(islam(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(islam(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'kerangmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(kerang(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(kerang(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'logomakermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(logomaker(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(logomaker(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'mememenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(meme(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(meme(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'musicmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(music(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(music(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'othermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(other(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(other(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'ownermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(owner(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(owner(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'searchmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(search(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(search(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'soundmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(sound(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(sound(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'stalkmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(stalk(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(stalk(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'stayonscreenmenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(stayonscreen(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(stayonscreen(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'stickermakermenu':
                                 case 'stikermakermenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(stickermaker(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(stickermaker(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'todmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(tod(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(tod(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'wibumenu-REMOVED':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(wibu(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(wibu(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'xpmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(xp(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(xp(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break
                                 case 'limitmenu':
                                         if (!isRegister) return reply(mess.only.daftarB)
-                                        await costum(limit(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        await costum(limit(pushname, prefix, botName, ownerName), text, tescuk, cr)
                                         break 
                   case 'timer':
 				if (args[1]=="segundos") {var timer = args[0]+"000"
