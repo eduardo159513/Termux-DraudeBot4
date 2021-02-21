@@ -24,29 +24,30 @@ const help = (pushname, prefix, botName, ownerName, reqXp, uangku) => {
 ║➩ ❍ *${prefix}chatlist*
 ║➩ ❍ *${prefix}ping*
 ║➩ ❍ *${prefix}bugreport*
-║➩ ❍ *${prefix}logomaker*
-║➩ ❍ *${prefix}imagemaker*
-║➩ ❍ *${prefix}stickermaker*
-║➩ ❍ *${prefix}search*
-║➩ ❍ *${prefix}education*
-║➩ ❍ *${prefix}kerang*
-║➩ ❍ *${prefix}downloader*
-║➩ ❍ *${prefix}meme*
-║➩ ❍ *${prefix}group*
-║➩ ❍ *${prefix}sound*
-║➩ ❍ *${prefix}music*
-║➩ ❍ *${prefix}islam*
-║➩ ❍ *${prefix}stalk*
-║➩ ❍ *${prefix}wibu*
-║➩ ❍ *${prefix}18+*
-║➩ ❍ *${prefix}fun*
-║➩ ❍ *${prefix}tod*
-║➩ ❍ *${prefix}information*
-║➩ ❍ *${prefix}stayonscreen*
-║➩ ❍ *${prefix}xp*
-║➩ ❍ *${prefix}limit*
-║➩ ❍ *${prefix}owner*
-║➩ ❍ *${prefix}other*
+║───────⊹⊱✫⊰⊹──────
+║➩ ❍ *${prefix}logomakermenu*
+║➩ ❍ *${prefix}imagemakermenu*
+║➩ ❍ *${prefix}stickermakermenu*
+║➩ ❍ *${prefix}searchmenu*
+║➩ ❍ *${prefix}educationmenu*
+║➩ ❍ *${prefix}kerangmenu - REMOVED*
+║➩ ❍ *${prefix}downloadermenu - REMOVED*
+║➩ ❍ *${prefix}mememenu*
+║➩ ❍ *${prefix}groupmenu*
+║➩ ❍ *${prefix}soundmenu - REMOVED*
+║➩ ❍ *${prefix}musicmenu - REMOVED*
+║➩ ❍ *${prefix}islammenu*
+║➩ ❍ *${prefix}stalkmenu - REMOVED*
+║➩ ❍ *${prefix}wibumenu - REMOVED*
+║➩ ❍ *${prefix}18+menu - REMOVED*
+║➩ ❍ *${prefix}funmenu*
+║➩ ❍ *${prefix}todmenu*
+║➩ ❍ *${prefix}informationmenu*
+║➩ ❍ *${prefix}stayonscreenmenu - REMOVED*
+║➩ ❍ *${prefix}xpmenu*
+║➩ ❍ *${prefix}limitmenu*
+║➩ ❍ *${prefix}ownermenu*
+║➩ ❍ *${prefix}othermenu*
 ║➩ Aumente seu level interagindo no grupo!!
 ║───────⊹⊱✫⊰⊹───────`
 }
