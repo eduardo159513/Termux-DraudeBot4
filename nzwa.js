@@ -23,7 +23,7 @@ const { virtex } = require('./src/virtex')
 const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, start, info, success, close } = require('./lib/functions')
 const { fetchJson } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
-const { ind } = require('./options/language')
+const { br } = require('./options/language')
 
 // Load Npm Package
 const fs = require('fs')
@@ -60,7 +60,7 @@ const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 // Load options file
 const option = JSON.parse(fs.readFileSync('./options/option.json'))
 const { eng } = require('./options/language')
-const { br } = require('./options/language')
+const { ind } = require('./options/language')
 const {
     botName,
     ownerName,
